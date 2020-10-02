@@ -30,14 +30,14 @@ footer{
 
 #frm-order {
     display: flex;
-    padding: 30px 30px 130px;
+    padding: 60px 30px 130px;
     flex-wrap:wrap;
     justify-content: space-between;
-
+    width: 99%;
 }
 
 .shipping-details {
-    width: 75%;
+    width: 100%;
 }
 .shipping-details h2{
     font-size: 35px;
@@ -49,21 +49,12 @@ line-height: 41px;
 
 .delivery-types-container {
     display: flex;
-    margin-top: 20px
+    margin-top: 20px;
+    justify-content: space-between;
+    margin-bottom: 86px;
 }
 
-.delivery-types > div {
-    flex: 1;
-}
 
-.delivery-types {
-    flex: 2;
-    display: flex;
-}
-
-.delivery-types-container .more-than {
-    flex: 1;
-}
 
 .receiver-data, .receiver-address {
     display: flex;
@@ -189,9 +180,12 @@ li.filter-option.ui-menu-item label {
     width: 20px;
     height: 20px;
     justify-content: center;
-    border: 1px solid #aaa;
+    border: 1px solid #F18E00;
     border-radius: 50%;
     transform: translateY(2px);
+    color: #F18E00;
+    margin-left: 40px;
+    margin-top: -50px;
 }
 .delivery-types-container .info-cost:before {
     display: inline-flex;
@@ -212,10 +206,13 @@ li.filter-option.ui-menu-item label {
     box-shadow: 0 2px 6px 0px #777;
     transform: scale(1);
 }
-.delivery-types > div:first-child .info-cost:before {
+.delivery-types-container .more-than{
+    order: 3;
+}
+.delivery-types-container > .delivery-type-item:first-child .info-cost:before {
     content: "Express delivery...";
 }
-.delivery-types > div:nth-child(2) .info-cost:before {
+.delivery-types-container > .delivery-type-item:nth-child(2) .info-cost:before {
     content: "Standart delivery...";
 }
 .more-than .info-cost:before{
@@ -223,10 +220,88 @@ li.filter-option.ui-menu-item label {
 }
 .delivery-types-container label {
     display: flex;
-    margin-left: 10px;
+    margin-left: 3px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    justify-content: center;
+    align-items: center;
 }
 .delivery-types-container>div>div{
     display:flex;
+    align-items: center;
+}
+.delivery-types-container .types-container-inner{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    padding-right: 5%;
+}
+.delivery-types-container .types-container-inner .delivery-type-item:nth-child(2n+1) .additional-img{
+    display: none;
+}
+.delivery-types-container .types-container-inner .delivery-type-item:nth-child(2n+2) .additional-img{
+    display: flex;
+}
+.delivery-types-container .delivery-type-item.more-than{
+    width: 30%;
+}
+.delivery-types-container .delivery-type-item{
+    padding: 23px 19px;
+    border-radius: 10px;
+    position: relative;
+    width: 45%;
+    max-width: 100%;
+    display: flex;
+    background: white;
+}
+.delivery-types-container .delivery-type-item .additional-img{
+    position: absolute;
+    bottom: 10px;
+    background: white;
+    width: 41px;
+    height: 41px;
+    border-radius: 30px;
+    justify-content: center;
+    left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.delivery-types-container .delivery-type-item.more-than label{
+    left: 30px;
+}
+.delivery-types-container .delivery-type-item .checked-image{
+    display: none;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+.delivery-types-container .delivery-type-item.active{
+border: 1px solid #F18E00;
+}
+.delivery-types-container .delivery-type-item.active .checked-image{
+    display: block;    
+}
+.delivery-types-container .delivery-type-item.checked .checked-image{
+    display: block;    
+}
+.delivery-types-container .delivery-type-item input{
+visibility: hidden;
+}
+.delivery-types-container .delivery-type-item label span:not(.info-cost){
+    font-size: 20px;
+line-height: 23px;
+}
+.delivery-types-container .delivery-type-item label span.cost{
+    font-size: 16px;
+line-height: 19px;
+color: rgba(0, 0, 0, 0.5);
+margin-top: 5px;
+display: inline-block;
 }
 .delivery-types-container input {
     margin-top: 5px;

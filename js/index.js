@@ -40,6 +40,7 @@ function include(filename, onload) {
             if (script.readyState === 'complete' || script.readyState === 'loaded') {
                 script.onreadystatechange = null;
                 onload();
+
             }
         }
         else {
@@ -59,7 +60,6 @@ include('https://code.jquery.com/jquery-3.5.1.min.js', function () {
             include('https://api-maps.yandex.ru/2.1/?apikey=' + yandexKey + '&lang=ru_RU', function () {
                 $(document).ready(function () {
                     $("#poster-content").html(posterContent);
-
                     var clientKey = $("#poster-script").attr("key");
                     var bgColor = $("#poster-script").attr("bgcolor");
                     if (bgColor) {
@@ -85,7 +85,7 @@ include('https://code.jquery.com/jquery-3.5.1.min.js', function () {
                         merchantAddress = response.merchantAddress;
                         //overweightPrice = response.overweightPrice;
                         merchantID = response.id;
-                        $("#more-than-text").html("<span>More than 15 kg <br/>" + overweightPrice + " AMD</span><span class='info-cost'>!</span> ");
+                        $("#more-than-text").html("<span>More than 15 kg <br/><span class='cost'> " + overweightPrice + "AMD</span></span><span class='info-cost'>!</span> ");
                         $.each(response.deliveryTypes, function (index, deliveryType) {
                             var radioContent = radioTemplate.replace("{radio-id}", "delivery-type-radio-" + index)
                                 .replace("{radio-attr-name}", "delivery-type-radio")
@@ -102,11 +102,13 @@ include('https://code.jquery.com/jquery-3.5.1.min.js', function () {
 
                             if (index == 0) {
                                 radioContent = radioContent.replace("{radio-checked}", "checked")
+                                radioContent = radioContent.replace("{radio-active}", "active")
                             } else {
                                 radioContent = radioContent.replace("{radio-checked}", "")
+                                radioContent = radioContent.replace("{radio-active}", "")
                             }
 
-                            $(".delivery-types").append(radioContent);
+                            $(".delivery-types-container .types-container-inner").append(radioContent);
                         });
                     });
 
@@ -116,7 +118,7 @@ include('https://code.jquery.com/jquery-3.5.1.min.js', function () {
                         var id = $(this).attr("data-id");
                         branchIndex = $('.post-branch[data-id="' + id + '"] .branch-index').text();
                         var branchAddress = $('.post-branch[data-id="' + id + '"] .branch-address').text();
-                        calculateDistance(merchantAddress, branchAddress)
+                        calculateDistance(merchantAddress, branchAddress);
                     })
 
                     $(document).on("click", "#payment-type-cache", function () {
@@ -146,6 +148,7 @@ include('https://code.jquery.com/jquery-3.5.1.min.js', function () {
                     //#region Events
                     $(document).on('change', '.price-checking', function () {
                         priceChecking();
+
                     });
                     //#endregion
                 });
@@ -359,6 +362,15 @@ function priceChecking() {
     $(".post-addresses").hide();
     var formValid = true;
     var $radio = $("input[name='delivery-type-radio']:checked");
+    var isOversized = $("#more-than").prop("checked");
+    $(".delivery-type-item:not(.more-than).active").removeClass("active")
+    $radio.closest(".delivery-type-item:not(.more-than)").addClass("active");
+    if (isOversized) {
+        $(".delivery-type-item.more-than").addClass("checked")
+    }
+    else {
+        $(".delivery-type-item.more-than").removeClass("checked")
+    }
     selectedDeliveryType = {
         TypeID: $radio.val(),
         IsExpress: $radio.attr("isexpress"),
@@ -367,8 +379,6 @@ function priceChecking() {
         MinPrice: $radio.attr("minprice"),
         FixedPrice: $radio.attr("fixedprice")
     };
-
-    var isOversized = $("#more-than").prop("checked");
 
     if (selectedStreet.ID == 0 || !$("#address-building").val()) {
         formValid = false;
@@ -462,7 +472,7 @@ function validateForm() {
 
 var branchTemplate = '<tr class="post-branch cursor-pointer" data-id="{data-id}"><td class="branch-index">{branch-index}</td><td class="branch-address">{branch-address}</td><td>{branch-distance}</td></tr>'
 
-var radioTemplate = '<div><input class="poster-radio price-checking cursor-pointer"' +
+var radioTemplate = '<div class="delivery-type-item {radio-active}"><div class="additional-img"><img src="icons/home.svg" alt="dumbbell"/></div><div class="checked-image"><img src="icons/checked.svg"  alt="checked"/></div><img src="icons/cube.svg" alt="cube"/> <input class="poster-radio price-checking cursor-pointer"' +
     '       type="radio"' +
     '       id="{radio-id}"' +
     '       {radio-checked}' +
@@ -477,7 +487,7 @@ var radioTemplate = '<div><input class="poster-radio price-checking cursor-point
     '       >' +
     '       <label class="cursor-pointer" for="{radio-label}"><span>' +
     '           {radio-name}' +
-    '           </br>{radio-cost}</span>' +
+    '           </br><span class="cost">{radio-cost}</span></span>' +
     '           <span class="info-cost">!</span>' +
     '       </label>' +
     '</div>';
@@ -489,15 +499,20 @@ var posterContent = `<header></header>
                 Shipping Details
             </h2>   
             <br />   
-            <hr />   
-            <div class="delivery-types-container">   
-                <div class="delivery-types">   
-  
-                </div>   
-                <div class="more-than"><div> 
+            <br />    
+            <div class="delivery-types-container">     
+            <div class="types-container-inner">
+            
+            </div>
+                <div class="more-than delivery-type-item">
+                  <div class="checked-image"><img src="icons/checked.svg"  alt="checked"/></div> 
+                  <img src="icons/cube.svg" alt="cube"/>
+                  <div class="additional-img">
+                  <img src="icons/dumbbell.svg" alt="dumbbell"/>
+                  </div>
                     <input class="price-checking cursor-pointer" type="checkbox" id="more-than" name="more-than">   
                     <label id="more-than-text" class="cursor-pointer" for="more-than"></label>   
-                    </div>   
+                  </div>   
                 </div>   
             </div>   
             <div class="tabs-container">
