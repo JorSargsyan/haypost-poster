@@ -1,0 +1,275 @@
+[disabled] {
+    cursor: not-allowed;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#frm-order {
+    display: flex;
+    padding: 30px;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+
+.shipping-details {
+    width: 75%
+}
+
+.shipping-cost {
+    width: 20%
+}
+
+.delivery-types-container {
+    display: flex;
+    margin-top: 20px
+}
+
+.delivery-types > div {
+    flex: 1;
+}
+
+.delivery-types {
+    flex: 2;
+    display: flex;
+}
+
+.delivery-types-container .more-than {
+    flex: 1;
+}
+
+.receiver-data, .receiver-address {
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.receiver-data {
+    margin-top: 20px
+}
+
+    .receiver-data > div, .receiver-address > div {
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+        padding: 4px;
+    }
+
+#area-address-comments {
+    padding: 10px 4px;
+}
+
+.post-addresses tbody tr {
+    border-bottom: 1px solid #aaa
+}
+
+.post-addresses td,
+.post-addresses th {
+    padding: 5px;
+}
+
+.receiver-data input,
+.receiver-address input,
+#area-address-comments textarea {
+    width: 100%;
+    height: 30px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid #000;
+}
+
+#area-address-comments textarea {
+    min-height: 120px
+}
+
+.post-addresses {
+    text-align: left;
+}
+
+.autocomplete-dropdown-toggle {
+    position: absolute;
+    right: 8px;
+    top: calc(50% - 13px);
+    cursor: pointer;
+}
+
+ul.ui-autocomplete {
+    background-color: white;
+    border: 1px solid lightgrey;
+    width: 200px;
+    list-style-type: none;
+    padding-left: 0;
+    position: absolute;
+    z-index: 11111;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+li.filter-option.ui-menu-item label {
+    padding-left: 19px;
+    padding-top: 5px;
+    display: block;
+}
+
+.filter-option.ui-menu-item .ui-state-active {
+    background: #e9edf2;
+    outline: none;
+}
+
+.autocomplete-dropdown-list {
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    -webkit-box-shadow: none;
+}
+
+.poster-autocomplete {
+    box-shadow: unset !important;
+}
+
+.shipping-cost input {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    text-align: center;
+    background: transparent;
+    border: 1px solid orange;
+    border-radius: 6px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: .2s;
+}
+
+    .shipping-cost input:hover {
+        background: orange;
+    }
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+.active {
+    background: #dcdcdcdd;
+}
+
+#shiping-cost{
+    font-weight: 600;
+    cursor: pointer;
+}
+.info-cost {
+    position:relative;
+    display: flex;
+    margin-left:15px;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    transform: translateY(2px);
+}
+.delivery-types-container .info-cost:before {
+    display: inline-flex;
+    font-size:12px;
+    padding: 5px 10px;
+    position: absolute;
+    text-align: center;
+    background-color: #fff;
+    transform-origin: top center;
+    transform: scale(0);
+    top: 100%;
+    left: 50%;
+    margin-left: -45px;
+    width: 70px;
+    transition: .2s;
+}
+.info-cost:hover:before{
+    box-shadow: 0 2px 6px 0px #777;
+    transform: scale(1);
+}
+.delivery-types > div:first-child .info-cost:before {
+    content: "Express delivery...";
+}
+.delivery-types > div:nth-child(2) .info-cost:before {
+    content: "Standart delivery...";
+}
+.more-than .info-cost:before{
+    content:"More than 15 kg...";
+}
+.delivery-types-container label {
+    display: flex;
+    margin-left: 10px;
+}
+.delivery-types-container>div>div{
+    display:flex;
+}
+.delivery-types-container input {
+    margin-top: 5px;
+}
+.f-w-600 {
+    font-weight: 600;
+}
+.t-left{
+    text-align:left;
+}
+
+.p-b-10 {
+    padding-bottom: 10px;
+}
+
+@media only screen and (max-width:991px){
+
+    .receiver-address,
+    .receiver-data{
+        justify-content:center;
+    }
+
+    .shipping-cost {
+        width: 23.5%;
+    }
+    .receiver-data > div {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .receiver-address > div {
+        -ms-flex: 0 0 33.33%;
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+    }
+}
+
+@media only screen and (max-width: 850px){
+    .shipping-cost,
+    .shipping-details{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .receiver-data > div,
+    .receiver-address > div {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .delivery-types-container{
+        flex-direction:column;
+    }
+        .delivery-types-container .more-than {
+            margin-top:15px
+        }
+    #frm-order{
+        padding:28px 20px;
+    }
+    .receiver-data > div,
+    .receiver-address > div {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}

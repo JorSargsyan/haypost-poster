@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Loader</title>
+    
+    <script id="poster-script" 
+            type="text/javascript" 
+            src="./js/index.js" 
+            key="2d431400-273f-4c1b-818f-d6936a910f7b" 
+            bgcolor="white" 
+            orderid="500" 
+            callback="orderCallback"></script>
+</head>
+<body>
+        <div id="poster-content">
+        </div>
+    
+<script>
+    function orderCallback(model) {
+        console.log(model);
+        alert("Ok");
+    }
+</script>
+</body>
+</html>
