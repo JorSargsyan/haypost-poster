@@ -486,105 +486,128 @@ var posterContent = `<header></header>
 <form id="frm-order">   
         <div class="shipping-details">   
             <h2>   
-                Shopping Details   
+                Shipping Details
             </h2>   
             <br />   
             <hr />   
             <div class="delivery-types-container">   
                 <div class="delivery-types">   
-
+  
                 </div>   
-
                 <div class="more-than"><div> 
                     <input class="price-checking cursor-pointer" type="checkbox" id="more-than" name="more-than">   
                     <label id="more-than-text" class="cursor-pointer" for="more-than"></label>   
                     </div>   
                 </div>   
             </div>   
-            <div class="receiver-data">   
-                <div class="form-group receiver-name">   
-                    <div id="area-receiver-name">   
-                        <div class="input-group">   
-                            <input type="text" class="form-control" id="receiver-name" placeholder="Name" required>   
+            <div class="tabs-container">
+                <div class="tab-item tab-1 active">
+                    //first tab
+                    <div class="receiver-data">   
+                        <div class="form-group receiver-name">   
+                            <div id="area-receiver-name">   
+                                <div class="input-group">   
+                                    <input type="text" class="form-control" id="receiver-name" placeholder="Name" required>   
+                                </div>   
+                            </div>   
+                        </div>   
+        
+                        <div class="form-group receiver-sur-name">   
+                            <div id="area-receiver-sur-name">   
+                                <div class="input-group">   
+                                    <input type="text" class="form-control" placeholder="Sur Name" id="receiver-sur-name" required>   
+                                </div>   
+                            </div>   
+                        </div>   
+        
+                        <div class="form-group receiver-email">   
+                            <div id="area-receiver-email">   
+                                <div class="input-group">   
+                                    <input type="email" class="form-control" id="receiver-email" placeholder="Email" pattern="[a-z0-9._%-]@[a-z0-9.-]\.[a-z]{2,4}$")" required>   
+                                </div>   
+                            </div>   
+                        </div>   
+        
+                        <div class="form-group receiver-mobile">   
+                            <div id="area-receiver-mobile">   
+                                <div class="input-group">   
+                                    <input type="number" class="form-control" placeholder="Mobile" id="receiver-mobile" required>   
+                                </div>   
+                            </div>   
+                        </div>   
+                    </div> 
+                </div> 
+                <div class="tab-item tab-2">
+                //second tab
+                <div class="receiver-address">   
+    
+                    <div class="form-group region">   
+                        <div id="f-ac-address-region">   
+                            <div class="input-group">   
+                                <input placeholder="Region" class="poster-autocomplete form-control"   
+                                    data-ajaxSource="  apiUrl  address/getaddresses?filter=Region"   
+                                    data-callback="addressRegionChange"   
+                                    id="ac-address-region" required>   
+    
+                            </div>   
                         </div>   
                     </div>   
-                </div>   
-
-                <div class="form-group receiver-sur-name">   
-                    <div id="area-receiver-sur-name">   
-                        <div class="input-group">   
-                            <input type="text" class="form-control" placeholder="Sur Name" id="receiver-sur-name" required>   
+    
+                    <div class="form-group district">   
+                        <div id="f-ac-address-district">   
+                            <div class="input-group">   
+                                <input placeholder="District"   
+                                    class="poster-autocomplete form-control"   
+                                    data-callback="addressDistrictChange" disabled  
+                                    id="ac-address-district" required>   
+                            </div>   
                         </div>   
                     </div>   
-                </div>   
-
-                <div class="form-group receiver-email">   
-                    <div id="area-receiver-email">   
-                        <div class="input-group">   
-                            <input type="email" class="form-control" id="receiver-email" placeholder="Email" pattern="[a-z0-9._%-]@[a-z0-9.-]\.[a-z]{2,4}$")" required>   
+    
+                    <div class="form-group street">   
+                        <div id="f-ac-address-street">   
+                            <div class="input-group">   
+                                <input class="poster-autocomplete form-control price-checking"   
+                                    placeholder="Street"   
+                                    data-callback="addressStreetChange" disabled  
+                                    id="ac-address-street" required>   
+                            </div>   
                         </div>   
                     </div>   
-                </div>   
-
-                <div class="form-group receiver-mobile">   
-                    <div id="area-receiver-mobile">   
-                        <div class="input-group">   
-                            <input type="number" class="form-control" placeholder="Mobile" id="receiver-mobile" required>   
+    
+                    <div class="form-group building">   
+                        <div id="area-address-building">   
+                            <div class="input-group">   
+                                <input type="text" placeholder="Building" class="form-control price-checking" id="address-building" required>   
+                            </div>   
                         </div>   
                     </div>   
-                </div>   
-            </div>   
-            <div class="receiver-address">   
-
-                <div class="form-group region">   
-                    <div id="f-ac-address-region">   
-                        <div class="input-group">   
-                            <input placeholder="Region" class="poster-autocomplete form-control"   
-                                data-ajaxSource="  apiUrl  address/getaddresses?filter=Region"   
-                                data-callback="addressRegionChange"   
-                                id="ac-address-region" required>   
-
+    
+                    <div class="form-group apartment">   
+                        <div id="area-address-apartment">   
+                            <div class="input-group">   
+                                <input type="text" placeholder="Apartment" class="form-control price-checking" id="address-apartment">   
+                            </div>   
                         </div>   
                     </div>   
+                </div> 
+                <div style="padding: 20px 4px; overflow:hidden">   
+                    <div id="map" style=" width: 100%; height: 300px; "></div>   
                 </div>   
+                </div>
+                <div class="tab-item tab3">
+                //third tab
 
-                <div class="form-group district">   
-                    <div id="f-ac-address-district">   
-                        <div class="input-group">   
-                            <input placeholder="District"   
-                                class="poster-autocomplete form-control"   
-                                data-callback="addressDistrictChange" disabled  
-                                id="ac-address-district" required>   
-                        </div>   
+                    <div class="shipping-cost">   
+                    <p id="shiping-cost"></p>   
+                    <p id="error-message" style="color: red;"></p>   
+        
+                    <div class="form-group apartment">   
+                        <input type="button" id="payment-type-card" value="Checkout with Card">   
+                        <input type="button" id="payment-type-cache" value="Checkout cash on delivery">   
                     </div>   
-                </div>   
-
-                <div class="form-group street">   
-                    <div id="f-ac-address-street">   
-                        <div class="input-group">   
-                            <input class="poster-autocomplete form-control price-checking"   
-                                placeholder="Street"   
-                                data-callback="addressStreetChange" disabled  
-                                id="ac-address-street" required>   
-                        </div>   
-                    </div>   
-                </div>   
-
-                <div class="form-group building">   
-                    <div id="area-address-building">   
-                        <div class="input-group">   
-                            <input type="text" placeholder="Building" class="form-control price-checking" id="address-building" required>   
-                        </div>   
-                    </div>   
-                </div>   
-
-                <div class="form-group apartment">   
-                    <div id="area-address-apartment">   
-                        <div class="input-group">   
-                            <input type="text" placeholder="Apartment" class="form-control price-checking" id="address-apartment">   
-                        </div>   
-                    </div>   
-                </div>   
+                </div>
+                </div>
             </div>   
 
             <div style="padding:10px 4px">   
@@ -600,18 +623,6 @@ var posterContent = `<header></header>
                     <tbody class="post-addresses-body">   
                     </tbody>   
                 </table>   
-            </div>   
-            <div style="padding: 20px 4px; overflow:hidden">   
-
-                <div id="map" style=" width: 100%; height: 300px; "></div>   
-            </div>   
-
-            <div class="form-group apartment">   
-                <div id="area-address-comments">   
-                    <div class="input-group">   
-                        <textarea type="text" placeholder="Comments" class="form-control price-checking" id="address-comments"></textarea>   
-                    </div>   
-                </div>   
             </div>   
         </div>   
 
