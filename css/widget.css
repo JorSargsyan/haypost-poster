@@ -8,7 +8,6 @@
     outline: none;
     font-family: 'Open Sans', sans-serif;
 }
-<<<<<<< Updated upstream
 header{
     background: #0E4F8A;
     height: 100px;
@@ -19,7 +18,6 @@ footer{
     height: 194px;
     width: 100%;
 }
-=======
 
 
 .tabs-container .tab-item.active{
@@ -30,7 +28,6 @@ footer{
     display: none;
 }
 
->>>>>>> Stashed changes
 #frm-order {
     display: flex;
     padding: 30px 30px 130px;
