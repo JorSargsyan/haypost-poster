@@ -8,18 +8,31 @@
     outline: none;
     font-family: 'Open Sans', sans-serif;
 }
-
+header{
+    background: #0E4F8A;
+    height: 100px;
+    width: 100%;
+}
+footer{
+    background: #0E4F8A;
+    height: 194px;
+    width: 100%;
+}
 #frm-order {
     display: flex;
-    padding: 30px;
+    padding: 30px 30px 130px;
     flex-wrap:wrap;
     justify-content: space-between;
+
 }
 
 .shipping-details {
-    width: 75%
+    width: 75%;
 }
-
+.shipping-details h2{
+    font-size: 35px;
+line-height: 41px;
+}
 .shipping-cost {
     width: 20%
 }
